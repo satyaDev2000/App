@@ -1,5 +1,6 @@
 from flask import Flask, request, send_file, jsonify
 import pandas as pd
+from urllib.parse import quote as url_quote
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill, Font, Border, Side, Alignment
 import os
@@ -8,7 +9,7 @@ app = Flask(__name__)
 
 # Enable CORS for frontend communication
 from flask_cors import CORS
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 UPLOAD_FOLDER = "uploads"
 OUTPUT_FOLDER = "outputs"

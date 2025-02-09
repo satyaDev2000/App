@@ -1,15 +1,18 @@
-/* Make body background adaptive */
+/* Apply background image */
 body {
-  background: url("https://img.freepik.com/free-photo/detail-rice-plant-sunset-valencia-with-plantation-out-focus-rice-grains-plant-seed_181624-25838.jpg?t=st=1739043138~exp=1739046738~hmac=7340a99d829b0ea5e6a0173e798cf37efd564f5c13fc7429a6b02fca9d62d68f&w=1380") 
-    no-repeat center center fixed;
+  background-image: url("../public/agri.jpg");
+ /* Ensure this path is correct */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
   background-size: cover;
-  font-family: Arial, sans-serif;
+  position: relative;
   margin: 0;
   padding: 0;
-  position: relative;
+  height: 100vh;
 }
 
-/* Add overlay for better visibility */
+/* Adaptive Gradient Overlay with Blur */
 body::before {
   content: "";
   position: absolute;
@@ -17,11 +20,12 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Darker overlay for better readability */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)); /* Darker top, fades down */
+  backdrop-filter: blur(5px); /* Adaptive blur */
   z-index: -1;
 }
 
-/* Center the main container */
+/* Main Container */
 .container {
   text-align: center;
   padding: 50px 20px;
@@ -33,7 +37,7 @@ body::before {
 .heading {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #f5c542; /* Adaptive golden color */
+  color: #f5c542;
   margin-bottom: 30px;
 }
 
@@ -47,8 +51,8 @@ body::before {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 500px; /* Ensures it doesn’t stretch too much */
-  width: 90%; /* Makes it responsive */
+  max-width: 500px;
+  width: 90%;
   margin: auto;
 }
 
@@ -61,7 +65,7 @@ body::before {
   width: 100%;
 }
 
-/* File Input Styling */
+/* File Input */
 .file-input {
   display: block;
   width: 100%;
@@ -123,10 +127,10 @@ body::before {
   background: #388e3c;
 }
 
-/* Responsive Design for Mobile */
+/* Responsive Design */
 @media (max-width: 768px) {
   .heading {
-    font-size: 2rem; /* Smaller heading on mobile */
+    font-size: 2rem;
   }
 
   .upload-container {
@@ -134,15 +138,10 @@ body::before {
     padding: 15px;
   }
 
-  .upload-text {
-    font-size: 1.2rem;
-  }
-
   .convert-button,
   .download-button {
     font-size: 1rem;
-    padding: 12px 25px
-
+    padding: 12px 25px;
   }
 }
 
