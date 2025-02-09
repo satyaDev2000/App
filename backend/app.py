@@ -4,11 +4,18 @@ from openpyxl import load_workbook
 from openpyxl.styles import PatternFill, Font, Border, Side, Alignment
 import os
 
-app = Flask(__name__)
-
-# Enable CORS for frontend communication
 from flask_cors import CORS
-CORS(app)
+
+allowed_origins = [
+    "https://your-frontend-url.vercel.app",
+    "https://app-8vh4.onrender.com",
+    "35.160.120.126",
+    "44.233.151.27",
+    "34.211.200.85"
+]
+
+CORS(app, resources={r"/*": {"origins": allowed_origins}})
+
 
 UPLOAD_FOLDER = "uploads"
 OUTPUT_FOLDER = "outputs"
