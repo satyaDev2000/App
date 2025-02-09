@@ -1,6 +1,5 @@
 from flask import Flask, request, send_file, jsonify
 import pandas as pd
-from urllib.parse import quote as url_quote
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill, Font, Border, Side, Alignment
 import os
@@ -9,13 +8,17 @@ app = Flask(__name__)
 
 # Enable CORS for frontend communication
 from flask_cors import CORS
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app)
 
 UPLOAD_FOLDER = "uploads"
 OUTPUT_FOLDER = "outputs"
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
+
+@app.route("/")
+def home():
+    return "Flask Backend is Running Successfully!"
 
 def process_excel(file1_path, file2_path, output_path):
     sheet1 = pd.read_excel(file1_path, header=None)
@@ -96,4 +99,5 @@ def download_file():
     return send_file(output_path, as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))  # ✅ Fetching dynamic port
+    app.run(host='0.0.0.0', port=port, debug=True)
